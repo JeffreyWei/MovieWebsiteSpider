@@ -1,19 +1,57 @@
 package com.wei.spider.entity;
 
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 影片实体类
  * Created by wei on 15/8/21.
  */
 public class MovieInfo {
-	private String movieName;
-	private String movieType;
-	private Date updateTime;
-	private String webTitle;
-	private String webURL;
-	private String originType;
-	private String downloadURL;
+	private static Pattern pattern = Pattern.compile("《(.*?)》");
+	private String movieName;//电影名称
+	private String movieType;//电影类型
+	private Date updateTime;//数据更新时间
+	private String webTitle;//页面标题
+	private String webURL;//页面链接
+	private String originType;//来源
+	private String downloadURL;//电影下载地址
+	private double rank;//电影得分
+
+	public MovieInfo(String webTitle, String webURL) {
+		this.webTitle = webTitle;
+		this.webURL = webURL;
+		this.updateTime = new Date();
+		this.movieName = webTitle;
+		Matcher matcher = pattern.matcher(webTitle);
+		while (matcher.find()) {
+			movieName = matcher.group(1);
+			break;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "MovieInfo{" +
+				"movieName='" + movieName + '\'' +
+				", movieType='" + movieType + '\'' +
+				", updateTime=" + updateTime +
+				", webTitle='" + webTitle + '\'' +
+				", webURL='" + webURL + '\'' +
+				", originType='" + originType + '\'' +
+				", downloadURL='" + downloadURL + '\'' +
+				", rank=" + rank +
+				'}';
+	}
+
+	public double getRank() {
+		return rank;
+	}
+
+	public void setRank(double rank) {
+		this.rank = rank;
+	}
 
 	public String getMovieName() {
 		return movieName;

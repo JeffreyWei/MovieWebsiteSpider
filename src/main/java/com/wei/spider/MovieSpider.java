@@ -13,11 +13,4 @@ public interface MovieSpider {
 	 * @return
 	 */
 	List<MovieInfo> getMovies();
-
-	/**
-	 * 获取来源信息
-	 * @return
-	 */
-	String getOriginType();
-
 }
