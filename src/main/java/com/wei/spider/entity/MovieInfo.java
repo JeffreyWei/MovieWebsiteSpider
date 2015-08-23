@@ -1,5 +1,6 @@
 package com.wei.spider.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,7 +9,12 @@ import java.util.regex.Pattern;
  * 影片实体类
  * Created by wei on 15/8/21.
  */
-public class MovieInfo {
+public class MovieInfo implements Serializable{
+	private static final long serialVersionUID = 1L;
+
+	public MovieInfo() {
+	}
+
 	private static Pattern pattern = Pattern.compile("《(.*?)》");
 	private String movieName;//电影名称
 	private String movieType;//电影类型
